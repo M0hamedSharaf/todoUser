@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    const AVATARS_PATH = 'images/user/avatars';
+    const AVATARS_PATH = 'images/user/avatars/';
 
     protected function avatar(): Attribute
     {

@@ -16,6 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'DESC')->get();
+        // $x =  User::AVATARS_PATH;
+        // dd($x);
         return view('index', [
             "users" => $users
         ]);
@@ -51,7 +53,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $fileName = $user->getRawOriginal('avatar');
-        dump($fileName);
+
         if ($request->file('avatar')) {
 
             $this->deleteImage(
@@ -63,7 +65,6 @@ class UserController extends Controller
                 path: User::AVATARS_PATH
             );
         }
-        dd($fileName);
 
         $user->update(
             [
@@ -79,10 +80,10 @@ class UserController extends Controller
 
     public function delete(User $user)
     {
-        $x = $this->deleteImage(
+        $this->deleteImage(
             path: $user->getAvatarPath()
         );
-        dd($x);
+
         $user->delete();
         return redirect()->back();
     }

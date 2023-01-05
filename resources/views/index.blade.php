@@ -41,7 +41,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>
-                        <img src="" alt="" class="avatar-image">
+                        <img src="{{ $user->avatar }}" width="100" alt="" class="avatar-image">
                     </td>
                     {{-- <td>{{ $user->password }}</td> --}}
                     <td>
