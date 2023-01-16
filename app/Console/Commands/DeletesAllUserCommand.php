@@ -13,7 +13,7 @@ class DeletesAllUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:Delete {--count=}';
+    protected $signature = 'user:delete {--count=}';
 
     /**
      * The console command description.
@@ -32,18 +32,8 @@ class DeletesAllUserCommand extends Command
 
         $count = $this->option(key: 'count');
 
-        $bar = $this->output->createProgressBar($count);
+        DB::table('users')->delete();
 
-
-        $bar->start();
-
-        for ($i = 0; $i <= $count; $i++) {
-
-            DB::table('users')->delete();
-            $bar->advance();
-        }
-
-        $bar->finish();
         echo "\n";
         $this->info('[===== تم خذف الجدول ارتحت كدا يعني =====]');
     }
