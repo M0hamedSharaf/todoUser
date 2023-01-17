@@ -29,12 +29,26 @@ class DeletesAllUserCommand extends Command
      */
     public function handle()
     {
+        $counts = $this->option(key: 'count');
+        // $num = intval($counts);
 
-        $count = $this->option(key: 'count');
+        if($counts > 0 )
+        {
+            $max= User::max('id');
+            $min= User::min('id');
+            for ($i=1; $i < $counts; $i++)
+            { 
+                $resultRand = rand( $max, $min);
+                User::where('id',$resultRand)->delete();
+            }
+            $this->info("[===== Delete Some Row In Table =====]");
+            dd('thats right');
+        }
+        else
+        {
+            DB::table('users')->delete();
+            $this->info('[===== Delete All Row In Table =====]');
+        }
 
-        DB::table('users')->delete();
-
-        echo "\n";
-        $this->info('[===== تم خذف الجدول ارتحت كدا يعني =====]');
     }
 }
