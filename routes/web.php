@@ -40,4 +40,5 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
     Route::put('update/{user}', [UserController::class, 'update'])->name('update');
     Route::get('delete/{user}', [UserController::class, 'delete'])->name('delete');
+    Route::get('/convert-to-json', [UserController::class, 'pagination'])->name('pagination');
 });

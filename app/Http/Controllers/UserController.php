@@ -15,9 +15,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->get();
-        // $x =  User::AVATARS_PATH;
-        // dd($x);
+        // $users = User::orderBy('id', 'DESC')->get();
+        $users = User::paginate(10);
+
         return view('index', [
             "users" => $users
         ]);
@@ -86,5 +86,10 @@ class UserController extends Controller
 
         $user->delete();
         return redirect()->back();
+    }
+
+    public function pagination(User $user)
+    {
+        return User::paginate(5);
     }
 }
